@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Bana Pişir - Ev Yapımı Yemekler</title>
+    <link rel="icon" type="image/png" href="./banapisir%20icon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#fa0050',
+                            light: '#ff3377',
+                            dark: '#cc0044',
+                        },
+                        lightGray: '#f3f4f6',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        
+        @layer utilities {
+            .scrollbar-hide::-webkit-scrollbar {
+                display: none;
+            }
+            .scrollbar-hide {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            .page-enter {
+                animation: fadeSlideUp 0.3s ease-out forwards;
+            }
+            .safe-bottom {
+                padding-bottom: env(safe-area-inset-bottom);
+            }
+        }
+
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        body {
+            -webkit-tap-highlight-color: transparent;
+            background-color: #f3f4f6;
+        }
+    </style>
+</head>
+
+<body class="text-gray-800 antialiased h-screen flex flex-col overflow-hidden">
+
+    <!-- Ana İçerik Alanı -->
+    <main id="content-area" class="flex-1 overflow-y-auto pb-20 relative">
+
+        <!-- ================= KEŞFET SAYFASI ================= -->
+        <div id="page-discover" class="page-section">
+            <!-- Üst Bar & Lokasyon -->
+            <div class="bg-white px-4 py-3 sticky top-0 z-10 shadow-sm">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="flex items-center gap-2">
+                        <img src="./banapisir%20icon.png" alt="Bana Pişir İkon" class="h-7 w-7 object-contain">
+                        <img src="./banapisir%20logo.png" alt="Bana Pişir Logo" class="h-5 object-contain">
+                    </div>
+                    <div class="bg-gray-100 p-2 rounded-full cursor-pointer hover:bg-gray-200 transition">
+                        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-xs text-gray-500 font-medium">Teslimat Adresi</p>
+                        <div class="flex items-center gap-1 cursor-pointer">
+                            <span class="font-bold text-sm truncate max-w-[200px]">Ev, Kadıköy (Moda Mah.)</span>
+                            <svg class="w-4 h-4 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kategoriler -->
+            <div class="py-4">
+                <div class="flex overflow-x-auto scrollbar-hide px-4 gap-4">
+                    <div class="flex flex-col items-center gap-2 cursor-pointer flex-shrink-0">
+                        <div class="w-16 h-16 rounded-2xl bg-orange-100 flex items-center justify-center shadow-sm">
+                            <span class="text-2xl">🍲</span>
+                        </div>
+                        <span class="text-xs font-semibold">Ev Yemekleri</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 cursor-pointer flex-shrink-0">
+                        <div class="w-16 h-16 rounded-2xl bg-yellow-100 flex items-center justify-center shadow-sm">
+                            <span class="text-2xl">🥟</span>
+                        </div>
+                        <span class="text-xs font-semibold">Mantı & Börek</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 cursor-pointer flex-shrink-0">
+                        <div class="w-16 h-16 rounded-2xl bg-green-100 flex items-center justify-center shadow-sm">
+                            <span class="text-2xl">🥗</span>
+                        </div>
+                        <span class="text-xs font-semibold">Zeytinyağlı</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 cursor-pointer flex-shrink-0">
+                        <div class="w-16 h-16 rounded-2xl bg-pink-100 flex items-center justify-center shadow-sm">
+                            <span class="text-2xl">🍰</span>
+                        </div>
+                        <span class="text-xs font-semibold">Tatlılar</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2 cursor-pointer flex-shrink-0">
+                        <div class="w-16 h-16 rounded-2xl bg-blue-100 flex items-center justify-center shadow-sm">
+                            <span class="text-2xl">🐟</span>
+                        </div>
+                        <span class="text-xs font-semibold">Deniz Ürünleri</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aşçı Listesi -->
+            <div class="px-4 pb-6">
+                <h2 class="font-bold text-lg mb-4">Yakınındaki Aşçılar</h2>
+                <div class="flex flex-col gap-4">
+                    <!-- Aşçı Kartı 1 -->
+                    <div
+                        class="bg-white rounded-2xl shadow-sm overflow-hidden cursor-pointer active:scale-[0.98] transition-transform">
+                        <div class="h-36 bg-gray-200 relative">
+                            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                                alt="Yemek" class="w-full h-full object-cover">
+                            <div
+                                class="absolute top-2 right-2 bg-white px-2 py-1 rounded-lg shadow text-xs font-bold flex items-center gap-1">
+                                <svg class="w-3 h-3 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                    </path>
+                                </svg>
+                                4.9 (120+)
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex justify-between items-start mb-1">
+                                <h3 class="font-bold text-md">Gülten Teyze'nin Mutfağı</h3>
+                            </div>
+                            <p class="text-sm text-gray-500 mb-2">Mantı, Sarma, Ev Yemekleri • 15-25 dk</p>
+                            <div class="flex items-center gap-2">
+                                <span
+                                    class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded-md flex items-center gap-1">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    Hijyen Sertifikalı
+                                </span>
+                                <span class="text-gray-400 text-xs text-brand">₺₺</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Aşçı Kartı 2 -->
+                    <div
+                        class="bg-white rounded-2xl shadow-sm overflow-hidden cursor-pointer active:scale-[0.98] transition-transform">
+                        <div class="h-36 bg-gray-200 relative">
+                            <img src="https://plus.unsplash.com/premium_photo-1661310177352-f586bf23a403?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                alt="Yemek" class="w-full h-full object-cover">
+                            <div
+                                class="absolute top-2 right-2 bg-white px-2 py-1 rounded-lg shadow text-xs font-bold flex items-center gap-1">
+                                <svg class="w-3 h-3 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                    </path>
+                                </svg>
+                                4.7 (85)
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex justify-between items-start mb-1">
+                                <h3 class="font-bold text-md">Mehmet Amca'nın Yeri</h3>
+                            </div>
+                            <p class="text-sm text-gray-500 mb-2">Izgara, Sulu Yemek, Tatlı • 20-30 dk</p>
+                            <div class="flex items-center gap-2">
+                                <span
+                                    class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded-md flex items-center gap-1">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    Hijyen Sertifikalı
+                                </span>
+                                <span class="text-gray-400 text-xs text-brand">₺</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Aşçı Kartı 3 -->
+                    <div
+                        class="bg-white rounded-2xl shadow-sm overflow-hidden cursor-pointer active:scale-[0.98] transition-transform">
+                        <div class="h-36 bg-gray-200 relative">
+                            <img src="https://images.unsplash.com/photo-1547496502-affa22d38842?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                                alt="Yemek" class="w-full h-full object-cover">
+                            <div
+                                class="absolute top-2 right-2 bg-white px-2 py-1 rounded-lg shadow text-xs font-bold flex items-center gap-1">
+                                <svg class="w-3 h-3 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                    </path>
+                                </svg>
+                                4.8 (240+)
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex justify-between items-start mb-1">
+                                <h3 class="font-bold text-md">Ayşe Abla'nın Mutfak Sırları</h3>
+                            </div>
+                            <p class="text-sm text-gray-500 mb-2">Zeytinyağlı, Sarma, Dolma • 30-45 dk</p>
+                            <div class="flex items-center gap-2">
+                                <span
+                                    class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded-md flex items-center gap-1">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    Hijyen Sertifikalı
+                                </span>
+                                <span class="text-gray-400 text-xs text-brand">₺₺₺</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Aşçı Kartı 4 -->
+                    <div
+                        class="bg-white rounded-2xl shadow-sm overflow-hidden cursor-pointer active:scale-[0.98] transition-transform">
+                        <div class="h-36 bg-gray-200 relative">
+                            <img src="https://images.unsplash.com/photo-1598514982205-f36b96d1e8d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                                alt="Yemek" class="w-full h-full object-cover">
+                            <div
+                                class="absolute top-2 right-2 bg-white px-2 py-1 rounded-lg shadow text-xs font-bold flex items-center gap-1">
+                                <svg class="w-3 h-3 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                    </path>
+                                </svg>
+                                4.6 (56)
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex justify-between items-start mb-1">
+                                <h3 class="font-bold text-md">Karadenizli Emine Teyze</h3>
+                            </div>
+                            <p class="text-sm text-gray-500 mb-2">Mıhlama, Karalahana, Hamsi • 20-30 dk</p>
+                            <div class="flex items-center gap-2">
+                                <span class="text-gray-400 text-xs text-brand">₺₺</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Aşçı Kartı 5 -->
+                    <div
+                        class="bg-white rounded-2xl shadow-sm overflow-hidden cursor-pointer active:scale-[0.98] transition-transform">
+                        <div class="h-36 bg-gray-200 relative">
+                            <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                                alt="Yemek" class="w-full h-full object-cover">
+                            <div
+                                class="absolute top-2 right-2 bg-white px-2 py-1 rounded-lg shadow text-xs font-bold flex items-center gap-1">
+                                <svg class="w-3 h-3 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <path
+                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                                    </path>
+                                </svg>
+                                4.9 (310+)
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex justify-between items-start mb-1">
+                                <h3 class="font-bold text-md">Tatlıcı Nuriye Abla</h3>
+                            </div>
+                            <p class="text-sm text-gray-500 mb-2">Baklava, Sütlaç, Güllaç • 15-25 dk</p>
+                            <div class="flex items-center gap-2">
+                                <span
+                                    class="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded-md flex items-center gap-1">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    Hijyen Sertifikalı
+                                </span>
+                                <span class="text-gray-400 text-xs text-brand">₺₺</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= ARA SAYFASI ================= -->
+        <div id="page-search" class="page-section hidden pt-4 px-4 h-full bg-white">
+            <div class="relative mb-6">
+                <input type="text" placeholder="Yemek, Aşçı veya kategori ara..."
+                    class="w-full bg-gray-100 text-gray-900 rounded-xl py-3 pl-10 pr-4 outline-none focus:ring-2 focus:ring-brand/20 transition">
+                <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </div>
+
+            <h3 class="font-bold text-gray-800 mb-3">Popüler Aramalar</h3>
+            <div class="flex flex-wrap gap-2 mb-8">
+                <span
+                    class="px-4 py-2 bg-gray-100 rounded-full text-sm font-medium text-gray-700 cursor-pointer hover:bg-gray-200 transition">Kayseri
+                    Mantısı</span>
+                <span
+                    class="px-4 py-2 bg-gray-100 rounded-full text-sm font-medium text-gray-700 cursor-pointer hover:bg-gray-200 transition">İçli
+                    Köfte</span>
+                <span
+                    class="px-4 py-2 bg-gray-100 rounded-full text-sm font-medium text-gray-700 cursor-pointer hover:bg-gray-200 transition">Zeytinyağlı
+                    Sarma</span>
+                <span
+                    class="px-4 py-2 bg-gray-100 rounded-full text-sm font-medium text-gray-700 cursor-pointer hover:bg-gray-200 transition">Ev
+                    Baklavası</span>
+                <span
+                    class="px-4 py-2 bg-gray-100 rounded-full text-sm font-medium text-gray-700 cursor-pointer hover:bg-gray-200 transition">Kısır</span>
+                <span
+                    class="px-4 py-2 bg-gray-100 rounded-full text-sm font-medium text-gray-700 cursor-pointer hover:bg-gray-200 transition">Su
+                    Böreği</span>
+                <span
+                    class="px-4 py-2 bg-gray-100 rounded-full text-sm font-medium text-gray-700 cursor-pointer hover:bg-gray-200 transition">Mercimek
+                    Köftesi</span>
+                <span
+                    class="px-4 py-2 bg-gray-100 rounded-full text-sm font-medium text-gray-700 cursor-pointer hover:bg-gray-200 transition">Lahmacun</span>
+            </div>
+
+            <h3 class="font-bold text-gray-800 mb-3">Kategoriler</h3>
+            <div class="grid grid-cols-2 gap-3 pb-8">
+                <div class="h-24 bg-red-50 rounded-xl p-3 relative overflow-hidden cursor-pointer">
+                    <span class="font-bold text-red-700 relative z-10">Ana Yemekler</span>
+                    <span class="text-4xl absolute -right-2 -bottom-2 opacity-50">🍛</span>
+                </div>
+                <div class="h-24 bg-orange-50 rounded-xl p-3 relative overflow-hidden cursor-pointer">
+                    <span class="font-bold text-orange-700 relative z-10">Çorbalar</span>
+                    <span class="text-4xl absolute -right-2 -bottom-2 opacity-50">🥣</span>
+                </div>
+                <div class="h-24 bg-green-50 rounded-xl p-3 relative overflow-hidden cursor-pointer">
+                    <span class="font-bold text-green-700 relative z-10">Vegan & Vejetaryen</span>
+                    <span class="text-4xl absolute -right-2 -bottom-2 opacity-50">🥗</span>
+                </div>
+                <div class="h-24 bg-pink-50 rounded-xl p-3 relative overflow-hidden cursor-pointer">
+                    <span class="font-bold text-pink-700 relative z-10">Unlu Mamüller</span>
+                    <span class="text-4xl absolute -right-2 -bottom-2 opacity-50">🥐</span>
+                </div>
+                <div class="h-24 bg-purple-50 rounded-xl p-3 relative overflow-hidden cursor-pointer">
+                    <span class="font-bold text-purple-700 relative z-10">Tatlılar</span>
+                    <span class="text-4xl absolute -right-2 -bottom-2 opacity-50">🍰</span>
+                </div>
+                <div class="h-24 bg-teal-50 rounded-xl p-3 relative overflow-hidden cursor-pointer">
+                    <span class="font-bold text-teal-700 relative z-10">Zeytinyağlılar</span>
+                    <span class="text-4xl absolute -right-2 -bottom-2 opacity-50">🫒</span>
+                </div>
+                <div class="h-24 bg-lime-50 rounded-xl p-3 relative overflow-hidden cursor-pointer">
+                    <span class="font-bold text-lime-700 relative z-10">Sağlıklı Yaşam</span>
+                    <span class="text-4xl absolute -right-2 -bottom-2 opacity-50">🥑</span>
+                </div>
+                <div class="h-24 bg-blue-50 rounded-xl p-3 relative overflow-hidden cursor-pointer">
+                    <span class="font-bold text-blue-700 relative z-10">Deniz Ürünleri</span>
+                    <span class="text-4xl absolute -right-2 -bottom-2 opacity-50">🐟</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SEPETİM SAYFASI ================= -->
+        <div id="page-cart" class="page-section hidden bg-lightGray min-h-full flex flex-col relative">
+            <div class="bg-white px-4 py-4 shadow-sm text-center sticky top-0 z-10">
+                <h1 class="font-bold text-lg">Sepetim</h1>
+            </div>
+
+            <!-- Boş Sepet Durumu (Gizli) -->
+            <div id="empty-cart" class="hidden flex-1 flex flex-col items-center justify-center p-8">
+                <div
+                    class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-4 overflow-hidden p-4 shadow-inner">
+                    <img src="./banapisir%20icon.png" alt="Bana Pişir İkon"
+                        class="w-full h-full object-contain opacity-50">
+                </div>
+                <h2 class="font-bold text-xl mb-2 text-gray-800">Sepetiniz Boş</h2>
+                <p class="text-gray-500 text-center mb-6">Aşçıların birbirinden lezzetli yemeklerini keşfetmeye hemen
+                    başlayın.</p>
+                <button onclick="switchTab('discover')"
+                    class="bg-brand text-white font-bold py-3 px-8 rounded-full hover:bg-brand-dark transition w-full shadow-lg shadow-brand/30">Keşfetmeye
+                    Başla</button>
+            </div>
+
+            <!-- Dolu Sepet Durumu -->
+            <div id="full-cart" class="flex-1 flex flex-col pb-24">
+                <div class="p-4 flex-1">
+                    <div class="bg-white rounded-xl p-4 shadow-sm mb-4">
+                        <div class="flex items-center justify-between mb-3 pb-3 border-b border-gray-100">
+                            <span class="font-bold text-gray-800">Gülten Teyze'nin Mutfağı</span>
+                            <span class="text-xs text-brand font-medium bg-brand/10 px-2 py-1 rounded-md">Minimum Tutar:
+                                ₺100</span>
+                        </div>
+
+                        <!-- Ürün 1 -->
+                        <div class="flex items-center gap-3 py-2">
+                            <div class="w-16 h-16 rounded-lg bg-gray-200 overflow-hidden flex-shrink-0">
+                                <img src="https://images.unsplash.com/photo-1772795713617-b09b725d0919?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                    alt="Yemek" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-sm text-gray-800">1 Porsiyon Yaprak Sarma</h4>
+                                <p class="text-brand font-bold text-sm mt-1">₺185.00</p>
+                            </div>
+                            <div class="flex items-center bg-gray-100 rounded-lg overflow-hidden">
+                                <button
+                                    class="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-200 active:bg-gray-300 transition">-</button>
+                                <span class="w-6 text-center text-sm font-medium">1</span>
+                                <button
+                                    class="w-8 h-8 flex items-center justify-center text-brand font-bold hover:bg-gray-200 active:bg-gray-300 transition">+</button>
+                            </div>
+                        </div>
+
+                        <!-- Ürün 2 -->
+                        <div class="flex items-center gap-3 py-2 mt-2">
+                            <div class="w-16 h-16 rounded-lg bg-gray-200 overflow-hidden flex-shrink-0">
+                                <img src="https://plus.unsplash.com/premium_photo-1671547330426-7db20a356605?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                                    alt="Yemek" class="w-full h-full object-cover">
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-semibold text-sm text-gray-800">Kayseri Mantısı</h4>
+                                <p class="text-brand font-bold text-sm mt-1">₺210.00</p>
+                            </div>
+                            <div class="flex items-center bg-gray-100 rounded-lg overflow-hidden">
+                                <button
+                                    class="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-200 active:bg-gray-300 transition">-</button>
+                                <span class="w-6 text-center text-sm font-medium">2</span>
+                                <button
+                                    class="w-8 h-8 flex items-center justify-center text-brand font-bold hover:bg-gray-200 active:bg-gray-300 transition">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fiş -->
+                    <div class="bg-white rounded-xl p-4 shadow-sm">
+                        <h3 class="font-bold text-gray-800 mb-3">Sipariş Özeti</h3>
+                        <div class="flex justify-between text-sm text-gray-600 mb-2">
+                            <span>Ara Toplam</span>
+                            <span>₺395.00</span>
+                        </div>
+                        <div class="flex justify-between text-sm text-gray-600 mb-2">
+                            <span>Gönderim Ücreti</span>
+                            <span>₺55.00</span>
+                        </div>
+                        <div
+                            class="flex justify-between font-bold text-lg text-gray-800 mt-4 pt-3 border-t border-gray-100">
+                            <span>Toplam</span>
+                            <span class="text-brand">₺450.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sepet Alt Bar -->
+                <div
+                    class="fixed bottom-[64px] left-0 w-full bg-white p-4 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] safe-bottom z-20">
+                    <button
+                        class="w-full bg-brand text-white font-bold py-3 px-4 rounded-xl flex justify-between items-center hover:bg-brand-dark transition shadow-lg shadow-brand/20 active:scale-[0.98]">
+                        <span class="bg-white/20 px-2 py-1 rounded text-sm">3 Ürün</span>
+                        <span>Ödemeye Geç</span>
+                        <span class="text-lg">₺320.00</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PROFİL SAYFASI ================= -->
+        <div id="page-profile" class="page-section hidden bg-lightGray min-h-full">
+            <div class="bg-brand pt-10 pb-16 px-6 text-center relative">
+                <div class="absolute inset-0 overflow-hidden">
+                    <svg class="absolute -bottom-4 left-0 w-full h-8 text-lightGray" preserveAspectRatio="none"
+                        viewBox="0 0 1440 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0,32L1440,32L1440,0C1140,32,300,32,0,0Z"></path>
+                    </svg>
+                </div>
+                <div class="relative z-10 flex flex-col items-center">
+                    <div class="w-20 h-20 rounded-full bg-white p-1 mb-3 shadow-lg">
+                        <div
+                            class="w-full h-full rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
+                            <img src="./banapisir%20icon.png" alt="Profil Avatarı" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <h2 class="text-xl font-bold text-white">Ahmet Yılmaz</h2>
+                    <p class="text-white/80 text-sm">ahmet.yilmaz@example.com</p>
+                </div>
+            </div>
+
+            <div class="px-4 -mt-8 relative z-20 pb-8">
+                <!-- Aşçı Ol Butonu -->
+                <div
+                    class="bg-white rounded-2xl p-4 shadow-sm mb-4 border border-brand/20 flex items-center justify-between cursor-pointer active:bg-gray-50 transition">
+                    <div>
+                        <h3 class="font-bold text-brand flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                            Aşçı Olarak Satış Yap
+                        </h3>
+                        <p class="text-xs text-gray-500 mt-1">Mutfağınızdan kazanç sağlamaya başlayın.</p>
+                    </div>
+                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </div>
+
+                <!-- Menü Listesi -->
+                <div class="bg-white rounded-2xl shadow-sm overflow-hidden mb-4">
+                    <div
+                        class="flex items-center justify-between p-4 border-b border-gray-100 cursor-pointer hover:bg-gray-50 active:bg-gray-100 transition">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-gray-100 p-2 rounded-lg text-gray-600"><svg class="w-5 h-5" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2">
+                                    </path>
+                                </svg></div>
+                            <span class="font-medium text-gray-700">Eski Siparişlerim</span>
+                        </div>
+                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </div>
+                    <div
+                        class="flex items-center justify-between p-4 border-b border-gray-100 cursor-pointer hover:bg-gray-50 active:bg-gray-100 transition">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-gray-100 p-2 rounded-lg text-gray-600"><svg class="w-5 h-5" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                    </path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg></div>
+                            <span class="font-medium text-gray-700">Adreslerim</span>
+                        </div>
+                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </div>
+                    <div
+                        class="flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50 active:bg-gray-100 transition">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-gray-100 p-2 rounded-lg text-gray-600"><svg class="w-5 h-5" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                                    </path>
+                                </svg></div>
+                            <span class="font-medium text-gray-700">Favorilerim</span>
+                        </div>
+                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+
+                <div
+                    class="bg-white rounded-2xl shadow-sm overflow-hidden cursor-pointer hover:bg-red-50 active:bg-red-100 transition">
+                    <div class="flex items-center justify-center p-4 text-brand font-bold gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
+                            </path>
+                        </svg>
+                        Çıkış Yap
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Alt Navigasyon (Bottom Nav) -->
+    <nav
+        class="fixed bottom-0 w-full bg-white border-t border-gray-200 flex justify-around items-center h-16 shadow-[0_-4px_10px_rgba(0,0,0,0.03)] z-50 safe-bottom">
+        <button id="nav-discover" onclick="switchTab('discover')"
+            class="nav-btn flex flex-col items-center justify-center w-full h-full text-brand transition-colors">
+            <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                </path>
+            </svg>
+            <span class="text-[10px] font-medium">Keşfet</span>
+        </button>
+
+        <button id="nav-search" onclick="switchTab('search')"
+            class="nav-btn flex flex-col items-center justify-center w-full h-full text-gray-400 hover:text-gray-600 transition-colors">
+            <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            <span class="text-[10px] font-medium">Ara</span>
+        </button>
+
+        <button id="nav-cart" onclick="switchTab('cart')"
+            class="nav-btn flex flex-col items-center justify-center w-full h-full text-gray-400 hover:text-gray-600 transition-colors relative">
+            <div class="relative">
+                <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                </svg>
+                <span
+                    class="absolute -top-1 -right-2 bg-brand text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full border-2 border-white">3</span>
+            </div>
+            <span class="text-[10px] font-medium">Sepetim</span>
+        </button>
+
+        <button id="nav-profile" onclick="switchTab('profile')"
+            class="nav-btn flex flex-col items-center justify-center w-full h-full text-gray-400 hover:text-gray-600 transition-colors">
+            <svg class="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+            </svg>
+            <span class="text-[10px] font-medium">Profil</span>
+        </button>
+    </nav>
+
+    <!-- SPA State Management & UI Logic -->
+    <script>
+        const tabs = ['discover', 'search', 'cart', 'profile'];
+
+        function switchTab(targetTab) {
+            tabs.forEach(tab => {
+                // İçerikleri Gizle/Göster
+                const pageEl = document.getElementById(`page-${tab}`);
+                if (tab === targetTab) {
+                    pageEl.classList.remove('hidden');
+                    // Yeniden animasyon için sınıfı kaldırıp ekle
+                    pageEl.classList.remove('page-enter');
+                    void pageEl.offsetWidth; // Reflow tetikle
+                    pageEl.classList.add('page-enter');
+                } else {
+                    pageEl.classList.add('hidden');
+                }
+
+                // Navigasyon İkonları Renk Durumu
+                const navBtn = document.getElementById(`nav-${tab}`);
+                if (tab === targetTab) {
+                    navBtn.classList.add('text-brand');
+                    navBtn.classList.remove('text-gray-400', 'hover:text-gray-600');
+                } else {
+                    navBtn.classList.remove('text-brand');
+                    navBtn.classList.add('text-gray-400', 'hover:text-gray-600');
+                }
+            });
+
+            // Sepet sayfası özel durum: Sayfa değiştirildiğinde en tepeye scroll at
+            const contentArea = document.getElementById('content-area');
+            contentArea.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Başlangıç animasyonunu aktif et
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('page-discover').classList.add('page-enter');
+        });
+    </script>
+</body>
+
+</html>
